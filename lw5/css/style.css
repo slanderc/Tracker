@@ -1,0 +1,30 @@
+body{
+  background: #edeef0;
+}
+
+#txt1{
+  color: rgb(138, 50, 50);
+  text-align: center;
+  font-size: 200px;
+  vertical-align: middle;
+}
+
+form {
+  text-align: center;  
+}
+
+#txt2{
+  font-size: 50px;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #39b54a; 
+  color: #fff; 
+  width: 100%; 
+}
+
+input{
+    height: 20px;
+    width: 130px;
+}
