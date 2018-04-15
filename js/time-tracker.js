@@ -28,8 +28,8 @@ var timer = setInterval(
     if (start){
       work--;
       if (work<=0) {
-       soundClick();
-       tomatos();
+        soundClick();
+        tomatos();
       }
      show();
     }
@@ -73,10 +73,13 @@ function biginterval(){
   }
 }
 
-function pause(){
-    start = !start;
-  if (!start)
-    document.getElementById("bpause").value = "Продолжить";
-  else
-    document.getElementById("bpause").value = "Пауза";
+window.onload = function () {
+    var button = document.getElementById('bpause');
+    button.onclick = function() {
+      start = !start;
+      if (!start)
+        document.getElementById("bpause").value = "Продолжить";
+      else
+        document.getElementById("bpause").value = "Пауза";
+    }
 }
