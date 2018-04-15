@@ -3,17 +3,30 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
-    <title>Tomatos time tracker</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-grid.css">
+    <title>Tomatos Time Tracker</title>
   </head>
   <body>
       <script src="js/time-tracker.js"></script>
       <div  id='txt1'></div>
       <form name =  'timer'>
-        <input  type="text" name="t" value="25">
-        <p><input type="button" value=" новый таймер " onclick="return Changetime()">
-        <p><input type="button" value="малый перерыв " onclick="return litleinterval()">
-        <p><input type="button" value="Большой перерыв " onclick="return biginterval()"> 
-        <p><input type="button" value="pause " onclick="return pause()"> 
+	  <div class= 'container'>
+	  <div class = 'row'>
+		<div class = col-sm-3>
+        <p><input type="button" class="btn btn-outline-success btn-lg" value=" новый таймер " onclick="return Changetime()">
+		</div>
+		<div class = col-sm-3>
+        <p><input type="button" class="btn btn-outline-secondary btn-lg" value="малый перерыв " onclick="return litleinterval()">
+		</div>
+		<div class = col-sm-3>
+        <p><input type="button" class="btn btn-outline-secondary btn-lg" value="Большой перерыв " onclick="return biginterval()">
+		</div>
+		<div class = col-sm-3>
+        <input type="button" class="btn btn-outline-warning btn-lg" id='bpause' onclick="return pause()"> 
+		</div>
+		</div>
+	  </div>
       </form>
     <div id='txt2'></div>
   </body>

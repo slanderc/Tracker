@@ -17,7 +17,7 @@ function show(){
 
 function Changetime() {
   Stage = false;
-  savework = work = document.forms["timer"]["t"].value*60;
+  savework = work = 25*60;
   start = true;
   show();
 }
