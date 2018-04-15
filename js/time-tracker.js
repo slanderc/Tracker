@@ -74,5 +74,9 @@ function biginterval(){
 }
 
 function pause(){
-  start = !start;
+    start = !start;
+  if (!start)
+    document.getElementById("bpause").value = "Продолжить";
+  else
+    document.getElementById("bpause").value = "Пауза";
 }
