@@ -13,19 +13,24 @@
       <form name =  'timer'>
 	    <div class= 'container'>
 	      <div class = 'row'>
-		    <div class = col-sm-3>
-              <p><input type="button" class="btn btn-outline-success btn-lg" value=" новый таймер " onclick="return Changetime()">
+		    <div class = col-sm-4>
+              <p><input type="button" class="btn btn-outline-success btn-lg" value=" Новый таймер " onclick="return Changetime()">
+		    </div>
+		    <div class = col-sm-4>
+              <p><input type="button" class="btn btn-outline-secondary btn-lg" value="Малый перерыв " onclick="return litleinterval()">
 		    </div>
 		    <div class = col-sm-3>
-              <p><input type="button" class="btn btn-outline-secondary btn-lg" value="малый перерыв " onclick="return litleinterval()">
+              <input type="button" class="btn btn-outline-warning btn-lg" id='bpause' value="Пауза" onclick = "return pauses()"> 
 		    </div>
-		    <div class = col-sm-3>
+      </div>
+        <div class = 'row'>
+            <div class = col-sm-4>
+                <p><input type="button" class="btn btn-outline-success btn-lg" value="Продолжить таймер" id = 'old' onclick = "return oldtimer()">
+          </div>
+          <div class = col-sm-4>
               <p><input type="button" class="btn btn-outline-secondary btn-lg" value="Большой перерыв " onclick = "return biginterval()">
 		    </div>
-		    <div class = col-sm-3>
-              <input type="button" class="btn btn-outline-warning btn-lg" id='bpause' value="Пауза" > 
-		    </div>
-		  </div>
+        </div>
 	    </div>
       </form>
     <div id='txt2'></div>
