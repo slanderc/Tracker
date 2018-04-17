@@ -1,122 +1,133 @@
-var minute = 0;
-var savework = 25*60;
-var tomat = 0;
-var second = 0;
-var work = 0;
-var Stage = false;
-var start = false;
+class tomattimetracker {
+  constructor() {
+    this.minute = 0;
+    this.savework = 10;
+    this.tomat = 0;
+    this.second = 0;
+    this.work = 0;
+    this.Stage = 1;
+    this.start = false;
+  }
 
-function show(){
-  minute = parseInt(work/60);
-  second = parseInt(work%60);
-  if (second>=10)
-    document.getElementById('txt1').innerHTML = minute.toString() + ":" + second.toString();
-  else
-    document.getElementById('txt1').innerHTML = minute.toString() + ":0" + second.toString();
-}
+  show() {
+    this.minute = parseInt(this.work / 60);
+    this.second = parseInt(this.work % 60);
+    if (this.second >= 10)
+      document.getElementById('txt1').innerHTML = this.minute.toString() + ":" + this.second.toString();
+    else
+      document.getElementById('txt1').innerHTML = this.minute.toString() + ":0" + this.second.toString();
+  }
 
-function Changetime() {
-  Stage = false;
-  localStorage.setItem('sstage', Stage);
-  localStorage.setItem('Tomatos', 0);
-  tomat = 0;
-  work = 25*60;
-  start = true;
-  show();
-}
+  Changetime() {
+    this.Stage = 0;
+    localStorage.setItem('sstage', this.Stage);
+    localStorage.setItem('Tomatos', 0);
+    this.tomat = 0;
+    this.work = 10;
+    this.start = true;
+    this.show();
+  }
 
-var timer = setInterval(
-  window.onload = function() {
-    document.getElementById('txt2').innerHTML = "Помидорки : "  + tomat.toString() + "/12";
-    if (start){
-      work--;
-      if (work<=0) {
-        soundClick();
-        tomatos();
+  tomatos() {
+    if (this.Stage == 1) {
+      this.work = this.savework;
+    }else {
+      this.tomat++;
+      document.getElementById('txt2').innerHTML = "Помидорки :" + this.tomat.toString() + "/12";
+      if (this.tomat == 12) {
+        alert("Конец, ты устал");
+        this.Stage = 1;
+        this.tomat = 0;
+        this.start = false;
       }
-     show();
-    }
-  },1000);
-  
-function tomatos(){
-  if (!Stage){
-    tomat++;
-    localStorage.setItem('Tomatos', tomat);
-    document.getElementById('txt2').innerHTML = "Помидорки :"  + tomat.toString() + "/12";
-    if (tomat == 12){
-      alert ("Конец, ты устал");
-      localStorage.setItem('Tomatos', 0);
-      Stage = false;
-      localStorage.setItem('sstage', Stage);
-    }
-      if (tomat%4 == 0 && tomat > 1){
-        biginterval() 
-      } else
-        litleinterval()
-    } else{
-      work = savework;
-      Stage = false;
+        if (this.tomat % 4 == 0 && this.tomat > 1) {
+          this.biginterval();
+        } else {
+          this.litleinterval();
+        }
+    } 
+      localStorage.setItem('Tomatos', this.tomat);
+      localStorage.setItem('sstage', this.Stage);
+      if (this.Stage == 1)
+        this.Stage = 0;
+      else this.Stage = 1;        
   }
-  //Stage = !Stage;
-  localStorage.setItem('sstage', Stage);
-}
 
-function soundClick() {
-  var audio = new Audio(); 
-  audio.src = 'music/click.mp3'; 
-  audio.autoplay = true;
-}
+  soundClick() {
+    var audio = new Audio();
+    audio.src = 'music/click.mp3';
+    audio.volume = 0.1;
+    audio.autoplay = true;
+  }
 
-function litleinterval(){
-  if (start){
-    Stage = true;
-    localStorage.setItem('sstage', Stage);
-    work = 5*60;
-    show();
+  litleinterval() {
+    if (this.start) {
+      this.work = 5;
+      this.show();
+    }
+  }
+
+  biginterval() {
+    if (this.start) {
+      this.work = 3;
+      this.show();
+    }
+  }
+
+  pauses() {
+    this.start = !this.start;
+    if (!this.start)
+      document.getElementById("bpause").value = "Продолжить";
+    else
+      document.getElementById("bpause").value = "Пауза";
+  }
+
+  oldtimer() {
+    if (this.tomat != 0) {   
+      this.Stage = localStorage.getItem('sstage');
+      this.start = true;
+      this.tomatos();
+    }
+  }
+
+  update() {
+    document.getElementById('txt2').innerHTML = "Помидорки : " + this.tomat.toString() + "/12";
+    if (this.start) {
+      this.work--;
+      if (this.work <= 0) {
+        this.soundClick();
+        this.tomatos();
+      }
+      this.show();
+    }
   }
 }
 
-function biginterval(){
-  if (start){
-    Stage = true;
-    localStorage.setItem('sstage', Stage);
-    work = 30*60;
-    show();
-  }
-}
-
-function pauses(){
-      start = !start;
-      if (!start)
-        document.getElementById("bpause").value = "Продолжить";
-      else
-        document.getElementById("bpause").value = "Пауза";
-}
-
-function oldtimer(){
-  if (tomat != 0){
-  savestage = localStorage.getItem('sstage');
-  Stage = savestage;
-  start = true;
-  if (!Stage)
-    work = 25*60;
-  if (Stage){
-    if (tomat%4 == 0 && tomat > 1 ){
-      biginterval();
-    }
-    else{
-      litleinterval();  
-    }
-    }
-  start = true;
-  show();
-}
-}
+tt = new tomattimetracker();
+var timer = setInterval(
+    window.onload = function () {
+        tt.update();
+    }, 1000);
 
 window.onload = function () {
-  savetomat = localStorage.getItem('Tomatos');
-  tomat = savetomat;
-  if (tomat == 0){
+  tt.savetomat = localStorage.getItem('Tomatos');
+  tt.tomat = tt.savetomat;
+  if (tt.tomat == 0) {
     document.getElementById("old").value = "Нет сохраненного таймера";
+  }
+  document.getElementById('change').onclick = function () {
+    tt.Changetime();
+  }
+  document.getElementById('litle').onclick = function () {
+    tt.litleinterval();
+  }
+  document.getElementById('bpause').onclick = function () {
+    tt.pauses();
+  }
+  document.getElementById('old').onclick = function () {
+    tt.oldtimer();
+  }
+  document.getElementById('big').onclick = function () {
+    tt.biginterval();
   }
 }
