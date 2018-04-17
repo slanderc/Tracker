@@ -1,7 +1,7 @@
 class tomattimetracker {
   constructor() {
     this.minute = 0;
-    this.savework = 10;
+    this.savework = 25*60;
     this.tomat = 0;
     this.second = 0;
     this.work = 0;
@@ -23,7 +23,7 @@ class tomattimetracker {
     localStorage.setItem('sstage', this.Stage);
     localStorage.setItem('Tomatos', 0);
     this.tomat = 0;
-    this.work = 10;
+    this.work = 25*60;
     this.start = true;
     this.show();
   }
@@ -56,20 +56,19 @@ class tomattimetracker {
   soundClick() {
     var audio = new Audio();
     audio.src = 'music/click.mp3';
-    audio.volume = 0.1;
     audio.autoplay = true;
   }
 
   litleinterval() {
     if (this.start) {
-      this.work = 5;
+      this.work = 5*60;
       this.show();
     }
   }
 
   biginterval() {
     if (this.start) {
-      this.work = 3;
+      this.work = 30*60;
       this.show();
     }
   }
@@ -83,8 +82,10 @@ class tomattimetracker {
   }
 
   oldtimer() {
-    if (this.tomat != 0) {   
+    if (this.tomat != 0) {
       this.Stage = localStorage.getItem('sstage');
+      if (this.Stage == 0)
+        this.tomat--;
       this.start = true;
       this.tomatos();
     }
@@ -131,3 +132,4 @@ window.onload = function () {
     tt.biginterval();
   }
 }
+
