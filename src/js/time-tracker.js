@@ -104,7 +104,7 @@ class tomattimetracker {
   }
 }
 
-tt = new tomattimetracker();
+var tt = new tomattimetracker();
 var timer = setInterval(
     window.onload = function () {
         tt.update();
