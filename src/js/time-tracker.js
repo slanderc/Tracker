@@ -48,7 +48,7 @@ var api = new Api();
 class tomattimetracker {
   constructor() {
     this.minute = 0;
-    this.savework = 25;
+    this.savework = 25 * 60;
     this.tomat = 0;
     this.second = 0;
     this.work = 0;
@@ -72,7 +72,7 @@ class tomattimetracker {
   Changetime() {
     api.send({
       command: 'setMinutes',
-      minutes: 25
+      minutes: 25 * 60
     })
     this.Stage = 0;
     localStorage.setItem('sstage', this.Stage);
@@ -119,7 +119,7 @@ class tomattimetracker {
     if (this.start) {
       api.send({
         command: 'setMinutes',
-        minutes: 5
+        minutes: 5 * 60
       })
     }
   }
@@ -128,7 +128,7 @@ class tomattimetracker {
     if (this.start) {
       api.send({
         command: 'setMinutes',
-        minutes: 30
+        minutes: 30 * 60
       })
     }
   }
