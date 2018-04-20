@@ -51,7 +51,7 @@ class tomattimetracker {
     this.savework = 25 * 60;
     this.tomat = 0;
     this.second = 0;
-    this.work = 0;
+    this.work = 25 * 60;
     this.Stage = 1;
     this.start = false;
   }
@@ -175,6 +175,7 @@ var tt = new tomattimetracker();
 window.onload = function () {
   tt.savetomat = localStorage.getItem('Tomatos');
   tt.tomat = tt.savetomat;
+  tt.show();
   if (tt.tomat == 0) {
     document.getElementById("old").value = "Нет сохраненного таймера";
   }
