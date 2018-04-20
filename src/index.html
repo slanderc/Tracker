@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
+    <link href='css/bootstrap-grid.css' rel='stylesheet' type='text/css'>
+    <title>Tomatos Time Tracker</title>
+  </head>
+  <body>
+    <script src="js/time-tracker.js"></script>
+    <div  id='txt1'></div>
+    <form name =  'timer'>
+	    <div class= 'container'>
+	      <div class = 'row'>
+          <div class = col-sm-4>
+            <p><input type="button" class="btn btn-outline-success btn-lg" value="Новый таймер " id = 'change'>
+          </div>
+          <div class = col-sm-4>
+            <p><input type="button" class="btn btn-outline-secondary btn-lg" value="Малый перерыв " id = 'litle'>
+          </div>
+          <div class = col-sm-3>
+            <input type="button" class="btn btn-outline-warning btn-lg" id='bpause' value="Пауза"> 
+          </div>
+        </div>
+        <div class = 'row'>
+          <div class = col-sm-4>
+            <p><input type="button" class="btn btn-outline-success btn-lg" value="Продолжить таймер" id = 'old'>
+          </div>
+          <div class = col-sm-4>
+            <p><input type="button" class="btn btn-outline-secondary btn-lg" value="Большой перерыв " id = 'big'>
+          </div>
+        </div>
+	    </div>
+    </form>
+    <div id='txt2'></div>
+  </body>
+</html>
