@@ -13,10 +13,10 @@ function Api() {
     };
     socket.onclose = function (event) {
       console.log("Соединение закрыто.");
-      return timerId = setInterval(function () {
-        console.log('Попытка соединения');
-        return init();
-      }, 1000);
+      //return timerId = setInterval(function () {
+        //console.log('Попытка соединения');
+        //return init();
+      //}, 1000);
     };
     socket.onmessage = function (event) {
       var data;
